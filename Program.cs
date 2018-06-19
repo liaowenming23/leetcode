@@ -12,6 +12,7 @@ namespace Leetcode
         //No.771
         public int NumJewelsInStones(string J, string S)
         {
+            //test
             int num = 0;
             int J_len = J.Length;
             int S_len = S.Length;
@@ -26,7 +27,6 @@ namespace Leetcode
                     num += s[J[j]];
                 }
             }
-       
             return num;
         }
     }

@@ -15,14 +15,18 @@ namespace Leetcode
             int num = 0;
             int J_len = J.Length;
             int S_len = S.Length;
+            int[] s = new int[256];
             for (int i = 0; i < S_len; i++){
-                for (int j = 0; j < J_len;j++){
-                    if(S[i].Equals(J[j])){
-                        num++;
-                        break;
-                    }
-                } 
+                    s[S[i]]++;
             }
+
+            for (int j = 0; j < J_len; j++)
+            {
+                if(s[J[j]] != 0){
+                    num += s[J[j]];
+                }
+            }
+       
             return num;
         }
     }

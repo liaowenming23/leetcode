@@ -1,0 +1,6 @@
+E:\Code\leetcode\bin\Debug\Leetcode.exe
+E:\Code\leetcode\bin\Debug\Leetcode.pdb
+E:\Code\leetcode\obj\x86\Debug\Leetcode.csprojResolveAssemblyReference.cache
+E:\Code\leetcode\obj\x86\Debug\Leetcode.csproj.CoreCompileInputs.cache
+E:\Code\leetcode\obj\x86\Debug\Leetcode.exe
+E:\Code\leetcode\obj\x86\Debug\Leetcode.pdb

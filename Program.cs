@@ -158,6 +158,96 @@ namespace Leetcode
         }
         #endregion
 
+        //No.9
+        public bool IsPalindrome(int x)
+        {
+            if (x < 0)
+                return false;
+            int len = (int)Math.Floor(Math.Log10(x)) + 1;
+            int first = 0;
+            int last = 0;
+            int num = 1;
+
+            for (int i = 1; i <= (len / 2); i++)
+            {
+                first = x / (int)Math.Pow(10, (len - num));
+                last = x % 10;
+                if (first != last)
+                {
+                    return false;
+                }
+                else
+                {
+                    x = x % (int)Math.Pow(10, (len - num));
+                    num++;
+                    x = x / 10;
+                    num++;
+                }
+            }
+            return true;
+        }
+
+        //No.13
+        public int RomanToInt(string s)
+        {
+            int[] symbol = new int[256];
+            symbol['I'] = 1;
+            symbol['V'] = 5;
+            symbol['X'] = 10;
+            symbol['L'] = 50;
+            symbol['C'] = 100;
+            symbol['D'] = 500;
+            symbol['M'] = 1000;
+            int result = 0;
+            int before_num = 0;
+            for (int i = s.Length - 1; i >= 0; i--)
+            {
+                if (symbol[s[i]] < before_num)
+                {
+                    result = result - symbol[s[i]];
+                }
+                else
+                {
+                    result = result + symbol[s[i]];
+                }
+                before_num = symbol[s[i]];
+            }
+            return result;
+        }
+
+        //No.14
+        public string LongestCommonPrefix(string[] strs)
+        {
+            string result = "";
+            int strs_len = strs.Length;
+            if (strs_len > 0)
+            {
+                int min_strLen = strs[0].Length;
+                foreach (var s in strs)
+                {
+                    if (s.Length < min_strLen)
+                    {
+                        min_strLen = s.Length;
+                    }
+                }
+                int temp_count = 0;
+                for (int i = 0; i < min_strLen; i++)
+                {
+                    for (int j = 1; j < strs_len; j++)
+                    {
+                        if (strs[0][i] != strs[j][i])
+                        {
+                            return result;
+                        }
+
+                    }
+                    result += strs[0][temp_count];
+                    temp_count++;
+                }
+            }
+            return result;
+        }
+
         //No.771
         public int NumJewelsInStones(string J, string S)
         {
@@ -178,7 +268,6 @@ namespace Leetcode
             }
             return num;
         }
-
 
         //No.852
         public static int PeakIndexInMountainArray(int[] A)

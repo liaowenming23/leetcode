@@ -4,15 +4,14 @@ namespace Leetcode
 {
     class MainClass
     {
-        public static void Main( string[] args )
+        public static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            TestReverseInterger();
+            TestIsValid();
 
         }
 
-        //No.2
-        #region 
+        #region No.2 -- AddTowNumberTestData
         public static void AddTowNumberTestData()
         {
             var test1 = new ListNode(2);
@@ -71,8 +70,7 @@ namespace Leetcode
 
         #endregion
 
-        //No.3
-        #region
+        #region No.3 -- LengthOfLongestSubstringTestData
         public static void LengthOfLongestSubstringTestData()
         {
             //string[] test = new string[4];
@@ -126,8 +124,7 @@ namespace Leetcode
         }
         #endregion
 
-        //No.7
-        #region Reverse Integer
+        #region No.7 -- Reverse Integer
         public static void TestReverseInterger()
         {
             int result = Reverse(-123);
@@ -138,7 +135,7 @@ namespace Leetcode
         public static int Reverse(int x)
         {
             bool IsNegative = x < 0;
-            if(IsNegative)
+            if (IsNegative)
                 x = x * -1;
             int result = 0;
             while (x > 0)
@@ -152,13 +149,13 @@ namespace Leetcode
                     return 0;
                 }
                 result += x % 10;
-                x = x / 10 ;
+                x = x / 10;
             }
             return IsNegative ? -result : result;
         }
         #endregion
 
-        //No.9
+        #region No.9 -- IsPalindrome
         public bool IsPalindrome(int x)
         {
             if (x < 0)
@@ -186,8 +183,9 @@ namespace Leetcode
             }
             return true;
         }
+        #endregion
 
-        //No.13
+        #region No.13 -- RomanToInt
         public int RomanToInt(string s)
         {
             int[] symbol = new int[256];
@@ -214,8 +212,9 @@ namespace Leetcode
             }
             return result;
         }
+        #endregion
 
-        //No.14
+        #region No.14 -- LongestCommonPrefix
         public string LongestCommonPrefix(string[] strs)
         {
             string result = "";
@@ -247,8 +246,83 @@ namespace Leetcode
             }
             return result;
         }
+        #endregion
 
-        //No.771
+        #region No.20 -- IsValid
+        public static void TestIsValid(){
+            var a = IsValid("(([]){})");
+            var b = IsValid("{[]}");
+            var c = IsValid("[()](())");
+            var d = IsValid("()");
+            var e = IsValid("((");
+            Console.WriteLine(a);
+            Console.WriteLine(b);
+            Console.WriteLine(c);
+            Console.WriteLine(d);
+            Console.WriteLine(e);
+            Console.ReadKey();
+        }
+
+        public static bool IsValid(string s)
+        {
+            if (string.IsNullOrEmpty(s))
+                return true;
+            int len = s.Length;
+            bool[] isValid = new bool[len];
+            bool isCompare = false;
+            for (int i = 0; i < len; i++)
+            {
+                if (!isValid[i])
+                {
+                    for (int j = (i + 1); j < len; j+=2)
+                    {
+                        if(Compare(s[i],s[j])){
+                            isValid[i] = true;
+                            isValid[j] = true;
+                            isCompare = true;
+                        }
+                    }
+                    if (!isCompare){
+                        return false;
+                    }else{
+                        isCompare = false;
+                    }
+                }
+            }
+
+            for (int i = 0; i < len; i++)
+            {
+                if (!isValid[i])
+                    return false;
+            }
+            return true;
+        }
+
+        public static bool Compare(char left, char right)
+        {
+            bool result = true;
+            switch (left)
+            {
+                case '(':
+                    if (right != ')')
+                        return false;
+                    break;
+                case '{':
+                    if (right != '}')
+                        return false;
+                    break;
+                case '[':
+                    if (right != ']')
+                        return false;
+                    break;
+                default:
+                    return false;
+            }
+            return result;
+        }
+        #endregion
+
+        #region No.771 -- NumJewelsInStones
         public int NumJewelsInStones(string J, string S)
         {
             //test
@@ -256,20 +330,23 @@ namespace Leetcode
             int J_len = J.Length;
             int S_len = S.Length;
             int[] s = new int[256];
-            for (int i = 0; i < S_len; i++){
-                    s[S[i]]++;
+            for (int i = 0; i < S_len; i++)
+            {
+                s[S[i]]++;
             }
 
             for (int j = 0; j < J_len; j++)
             {
-                if(s[J[j]] != 0){
+                if (s[J[j]] != 0)
+                {
                     num += s[J[j]];
                 }
             }
             return num;
         }
+        #endregion
 
-        //No.852
+        #region No.852 -- PeakIndexInMountainArray
         public static int PeakIndexInMountainArray(int[] A)
         {
             int result = 0;
@@ -286,6 +363,7 @@ namespace Leetcode
             }
             return result;
         }
+        #endregion
 
     }
 }
